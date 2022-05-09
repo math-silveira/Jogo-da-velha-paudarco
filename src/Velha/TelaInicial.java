@@ -4,6 +4,9 @@
  */
 package Velha;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author matheus
@@ -14,8 +17,15 @@ public class TelaInicial extends javax.swing.JFrame {
      * Creates new form TelaInicial
      */
     public TelaInicial() {
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
         initComponents();
+        centralizarComponente();
+    }
+
+    public void centralizarComponente() {
+        Dimension ds = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension dw = getSize();
+        setLocation((ds.width - dw.width) / 2, (ds.height - dw.height) / 2);
     }
 
     /**
@@ -38,6 +48,7 @@ public class TelaInicial extends javax.swing.JFrame {
         radioMaquina = new javax.swing.JRadioButton();
         btn_comecar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        sair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -96,6 +107,15 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Matheus Paudarco ©");
 
+        sair.setBackground(new java.awt.Color(204, 255, 255));
+        sair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,6 +148,10 @@ public class TelaInicial extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,9 +170,11 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(radioMaquina)
                     .addComponent(radioJogador))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addComponent(btn_comecar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
+                .addGap(18, 18, 18)
+                .addComponent(sair)
+                .addGap(55, 55, 55)
                 .addComponent(jLabel4)
                 .addContainerGap())
         );
@@ -175,11 +201,17 @@ public class TelaInicial extends javax.swing.JFrame {
     private void btn_comecarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_comecarActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        if(radioJogador.isSelected())
+        if (radioJogador.isSelected()) {
             new Interface(dificuldade.getValue(), 1).setVisible(true);
-        if(radioMaquina.isSelected())
+        }
+        if (radioMaquina.isSelected())
             new Interface(dificuldade.getValue(), 0).setVisible(true);
     }//GEN-LAST:event_btn_comecarActionPerformed
+
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_sairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,7 +243,7 @@ public class TelaInicial extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 new TelaInicial().setVisible(true);
             }
         });
@@ -229,5 +261,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel labelDificuldade;
     private javax.swing.JRadioButton radioJogador;
     private javax.swing.JRadioButton radioMaquina;
+    private javax.swing.JButton sair;
     // End of variables declaration//GEN-END:variables
 }
